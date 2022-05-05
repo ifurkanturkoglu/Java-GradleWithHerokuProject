@@ -16,7 +16,6 @@ public class App {
         String change_port = System.getenv("PORT");
 
         int port = change_port != null ? Integer.parseInt(System.getenv("PORT")) : 4567;
-
         port(port);
     }
     public static boolean sliderCountCal(ArrayList<String> sliderItems,String[]images,int baslangic,int son,int sliderItemCount){
