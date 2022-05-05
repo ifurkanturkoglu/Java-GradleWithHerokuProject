@@ -14,16 +14,13 @@ import spark.ModelAndView;
 import spark.template.mustache.MustacheTemplateEngine;
 public class App {
     
-    public String getGreeting() {
-        return "Hello World!";
-    }
+   
 
     public static void main(String[] args) {
         
     
  post("/compute", (req, res) -> {
-    //System.out.println(req.queryParams("input1"));
-    //System.out.println(req.queryParams("input2"));
+
     String input1 = req.queryParams("input1");
     java.util.Scanner sc1 = new java.util.Scanner(input1);
     sc1.useDelimiter("[;\r\n,]+");
@@ -37,7 +34,7 @@ public class App {
 
 
     String input2 = req.queryParams("input2");
-    java.util.Scanner sc2 = new java.util.Scanner(input1);
+    java.util.Scanner sc2 = new java.util.Scanner(input2);
     sc2.useDelimiter("[;\r\n,]+");
     String[] inputList2 = new String[10];
     int sayac = 0;
@@ -80,8 +77,13 @@ public class App {
         port(port);
     }
     public static boolean sliderCountCal(ArrayList<String> sliderItems,String[]images,int baslangic,int son,int sliderItemCount){
+                    
+        if(son == 0) return false;   
+        else if(images.length == 0) return false;
+        else if(baslangic < 0) return false;
+       
         ArrayList<ArrayList<String>> slider = new ArrayList<>();
-        double sliderCount = Math.ceil(sliderItems.size()/sliderItemCount);
+        double sliderCount = Math.ceil(images.length/sliderItemCount);
         double artis;
         if(sliderItems.size()< son ) son = sliderItems.size();
         for(int i = 0; i < sliderCount;i++){
@@ -104,11 +106,9 @@ public class App {
             }
             son += artis;
         }
-        if(slider.size() == 0) return false;     
-        else if(images.length == 0) return false;         
-        else if(son == 0) return false;
-        else if(sliderCount == 0) return false;
-        else if(slider.size()/sliderItemCount == sliderCount) return true;
+        if(slider.size() == 0) return false;  
+        else if(sliderCount == 0) return false; 
+        else if(son < baslangic) return false;
         return true;
     }
 }

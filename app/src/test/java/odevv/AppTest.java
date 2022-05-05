@@ -9,10 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 
 class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
-    }
+    
     @Test 
     public void sliderCountCalculated(){
         String[] images = {"sa","s","sda","dsad","dsa"};
@@ -25,19 +22,13 @@ class AppTest {
         };
         int baslangic = 0;
         int son = 4;
-        int sliderCount = 3;
+        int sliderCount = 2;
         assertTrue(App.sliderCountCal(sliderItems, images,baslangic, son, sliderCount));
     }
     @Test
     public void imageArrayNull(){
         String[] image = {};
-        ArrayList<String> sliderItems = new ArrayList<String>() {
-            {
-                add("Geeks");
-                add("for");
-                add("Geeks");
-            }
-        };
+        ArrayList<String> sliderItems = new ArrayList<String>();
         int baslangic = 0;
         int son = 4;
         int sliderCount = 3;
@@ -46,34 +37,28 @@ class AppTest {
     @Test
     public void sliderItemArrayLenghtZero(){
         String[] image = {"s","s"};
-        ArrayList<String> sliderItems = new ArrayList<String>() {
-            {
-                add("Geeks");
-                add("for");
-                add("Geeks");
-            }
-        };
+        ArrayList<String> sliderItems = new ArrayList<String>();
         int baslangic = 0;
         int son = 0;
         int sliderCount = 3;
         assertFalse(App.sliderCountCal(sliderItems, image,baslangic, son, sliderCount));
     }
-    // @Test
-    // public void sliderCountLengthZero(){
-    //     String[] b = {"s"};
-    //     String[] a = {};
-    //     int baslangic = 0;
-    //     int son = 4;
-    //     int sliderCount = 0;
-    //     assertFalse(App.sliderCountCal(a, b,baslangic, son, sliderCount));
-    // }
-    // @Test
-    // public void sliderNull(){
-    //     String[] b = {};
-    //     String[] a = {};
-    //     int baslangic = 0;
-    //     int son = 0;
-    //     int sliderCount = 3;
-    //     assertFalse(App.sliderCountCal(a, b,baslangic, son, sliderCount));
-    // }
+    @Test
+    public void baslangicBiggerThanSon(){
+        String[] image = {"s","s"};
+        ArrayList<String> sliderItems = new ArrayList<String>();
+        int baslangic = 2;
+        int son = 1;
+        int sliderCount = 3;
+        assertFalse(App.sliderCountCal(sliderItems, image,baslangic, son, sliderCount));
+    }
+    @Test
+    public void startIndexNotMinus(){
+        String[] image = {"s","s","s","s","s"};
+        ArrayList<String> sliderItems = new ArrayList<String>();
+        int baslangic = -1;
+        int son = 4;
+        int sliderCount = 3;
+        assertFalse(App.sliderCountCal(sliderItems, image,baslangic, son, sliderCount));
+    }
 }
