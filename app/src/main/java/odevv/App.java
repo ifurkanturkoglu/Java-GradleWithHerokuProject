@@ -3,19 +3,80 @@
  */
 package odevv;
 import static spark.Spark.port;
+import static spark.Spark.get;
+import static spark.Spark.post;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import spark.ModelAndView;
+import spark.template.mustache.MustacheTemplateEngine;
 public class App {
+    
     public String getGreeting() {
         return "Hello World!";
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        
+    
+ post("/compute", (req, res) -> {
+    //System.out.println(req.queryParams("input1"));
+    //System.out.println(req.queryParams("input2"));
+    String input1 = req.queryParams("input1");
+    java.util.Scanner sc1 = new java.util.Scanner(input1);
+    sc1.useDelimiter("[;\r\n,]+");
+    java.util.ArrayList<String> inputList = new java.util.ArrayList<>();
+    while (sc1.hasNext())
+    {
+    String value = sc1.next().replaceAll("\\s","");
+    inputList.add(value);
+    }
+    sc1.close();
+
+
+    String input2 = req.queryParams("input2");
+    java.util.Scanner sc2 = new java.util.Scanner(input1);
+    sc2.useDelimiter("[;\r\n,]+");
+    String[] inputList2 = new String[10];
+    int sayac = 0;
+    while (sc2.hasNext())
+    {
+    String value = sc2.next().replaceAll("\\s","");
+    inputList2[sayac] = value;
+    sayac++;
+    }
+    sc2.close();
+
+    String input3 = req.queryParams("input3").replaceAll("\\s","");
+    int input3AsInt = Integer.parseInt(input3);
+
+    String input4 = req.queryParams("input4").replaceAll("\\s","");
+    int input4AsInt = Integer.parseInt(input4);
+
+    String input5 = req.queryParams("input4").replaceAll("\\s","");
+    int input5AsInt = Integer.parseInt(input5);
+
+    boolean result = App.sliderCountCal(inputList,inputList2,input3AsInt, input4AsInt, input5AsInt);
+    Map<String, Boolean> map = new HashMap<String, Boolean>();
+    map.put("result", result);
+    return new ModelAndView(map, "compute.mustache");
+    }, new MustacheTemplateEngine());
+
+    get("/compute",
+    (rq, rs) -> {
+    Map<String, String> map = new HashMap<String, String>();
+    map.put("result", "not computed yet!");
+    return new ModelAndView(map, "compute.mustache");
+    },
+    new MustacheTemplateEngine());
+   
 
         String change_port = System.getenv("PORT");
 
         int port = change_port != null ? Integer.parseInt(System.getenv("PORT")) : 4567;
+
         port(port);
     }
     public static boolean sliderCountCal(ArrayList<String> sliderItems,String[]images,int baslangic,int son,int sliderItemCount){

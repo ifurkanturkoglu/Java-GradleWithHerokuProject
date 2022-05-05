@@ -23,7 +23,6 @@ class AppTest {
                 add("Geeks");
             }
         };
-        
         int baslangic = 0;
         int son = 4;
         int sliderCount = 3;
