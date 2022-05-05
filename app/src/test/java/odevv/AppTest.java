@@ -28,36 +28,36 @@ class AppTest {
         int sliderCount = 3;
         assertTrue(App.sliderCountCal(sliderItems, images,baslangic, son, sliderCount));
     }
-    // @Test
-    // public void imageArrayNull(){
-    //     String[] image = {};
-    //     ArrayList<String> sliderItems = new ArrayList<String>() {
-    //         {
-    //             add("Geeks");
-    //             add("for");
-    //             add("Geeks");
-    //         }
-    //     };
-    //     int baslangic = 0;
-    //     int son = 4;
-    //     int sliderCount = 3;
-    //     assertFalse(App.sliderCountCal(sliderItems, image, baslangic, son, sliderCount));
-    // }
-    // @Test
-    // public void sliderItemArrayLenghtZero(){
-    //     String[] image = {"s","s"};
-    //     ArrayList<String> sliderItems = new ArrayList<String>() {
-    //         {
-    //             add("Geeks");
-    //             add("for");
-    //             add("Geeks");
-    //         }
-    //     };
-    //     int baslangic = 0;
-    //     int son = 0;
-    //     int sliderCount = 3;
-    //     assertFalse(App.sliderCountCal(sliderItems, image,baslangic, son, sliderCount));
-    // }
+    @Test
+    public void imageArrayNull(){
+        String[] image = {};
+        ArrayList<String> sliderItems = new ArrayList<String>() {
+            {
+                add("Geeks");
+                add("for");
+                add("Geeks");
+            }
+        };
+        int baslangic = 0;
+        int son = 4;
+        int sliderCount = 3;
+        assertFalse(App.sliderCountCal(sliderItems, image, baslangic, son, sliderCount));
+    }
+    @Test
+    public void sliderItemArrayLenghtZero(){
+        String[] image = {"s","s"};
+        ArrayList<String> sliderItems = new ArrayList<String>() {
+            {
+                add("Geeks");
+                add("for");
+                add("Geeks");
+            }
+        };
+        int baslangic = 0;
+        int son = 0;
+        int sliderCount = 3;
+        assertFalse(App.sliderCountCal(sliderItems, image,baslangic, son, sliderCount));
+    }
     // @Test
     // public void sliderCountLengthZero(){
     //     String[] b = {"s"};
