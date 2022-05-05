@@ -18,6 +18,12 @@ public class App {
 
     public static void main(String[] args) {
         
+        String change_port = System.getenv("PORT");
+
+        int port = change_port != null ? Integer.parseInt(System.getenv("PORT")) : 4567;
+
+        port(port);
+        
     
  post("/compute", (req, res) -> {
 
@@ -70,11 +76,7 @@ public class App {
     new MustacheTemplateEngine());
    
 
-        String change_port = System.getenv("PORT");
-
-        int port = change_port != null ? Integer.parseInt(System.getenv("PORT")) : 4567;
-
-        port(port);
+        
     }
     public static boolean sliderCountCal(ArrayList<String> sliderItems,String[]images,int baslangic,int son,int sliderItemCount){
                     
